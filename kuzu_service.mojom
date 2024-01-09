@@ -1,0 +1,12 @@
+module kuzu.mojom;
+
+import "sandbox/policy/mojom/sandbox.mojom";
+[ServiceSandbox=sandbox.mojom.Sandbox.kService]
+
+interface KuzuDatabase {
+  CreateDatabase(string db_path) => ();
+  CreateConnection() => ();
+  Query(string query) => ();
+  SetResultData() => ();
+  LogResult() => ();
+};
