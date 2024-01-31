@@ -58,4 +58,3 @@ config("shared_library_public_config") {
     }
   }
 }
-
