@@ -6,7 +6,5 @@ import "sandbox/policy/mojom/sandbox.mojom";
 interface KuzuDatabase {
   CreateDatabase(string db_path) => ();
   CreateConnection() => ();
-  Query(string query) => ();
-  SetResultData() => ();
-  LogResult() => ();
+  Query(string query) => (string str);
 };
