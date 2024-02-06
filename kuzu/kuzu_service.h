@@ -19,19 +19,16 @@ class KuzuDatabase : public mojom::KuzuDatabase {
   ~KuzuDatabase() override;
 
  private:
-  // mojom::KuzuDatabase:
   void CreateDatabase(const std::string& db_path, CreateDatabaseCallback callback) override;
   void CreateConnection(CreateConnectionCallback callback) override;
   void Query(const std::string& query, QueryCallback callback) override;
-  // void SetResultData(SetResultDataCallback callback) override;
-  // void LogResult(LogResultCallback callback) override;
+  void SetMaxNumberOfThread(const std::string& num_threads, SetMaxNumberOfThreadCallback callback) override;
+  void GetMaxNumberOfThread(GetMaxNumberOfThreadCallback callback) override;
+  void WriteToCSV(const std::string& query, const std::string& file_path, const std::string& delimiter, const std::string& escape_char, const std::string& new_line, WriteToCSVCallback callback) override;
 
-  std::unique_ptr<kuzu_database> database;
-  std::unique_ptr<kuzu_connection> connection;
-  // std::unique_ptr<kuzu_query_result> query_result;
-  std::vector<std::pair<std::string, int64_t>> result_data;
-
-  Wrapper kuzu_wrapper;
+  std::unique_ptr<kuzu_database> database_;
+  std::unique_ptr<kuzu_connection> connection_;
+  Wrapper kuzu_wrapper_;
   mojo::Receiver<mojom::KuzuDatabase> receiver_;
 };
 
