@@ -4,7 +4,10 @@ import "sandbox/policy/mojom/sandbox.mojom";
 [ServiceSandbox=sandbox.mojom.Sandbox.kService]
 
 interface KuzuDatabase {
-  CreateDatabase(string db_path) => ();
-  CreateConnection() => ();
+  CreateDatabase(string db_path) => (string success_message);
+  CreateConnection() => (string success_message);
   Query(string query) => (string str);
+  SetMaxNumberOfThread(string num_threads) => (string str);
+  GetMaxNumberOfThread() => (string str);
+  WriteToCSV(string query, string file_path, string delimiter, string escape_char, string new_line) => (string str);
 };
